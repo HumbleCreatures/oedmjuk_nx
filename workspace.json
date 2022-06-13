@@ -2,6 +2,9 @@
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
   "projects": {
+    "oedmjuk-server": "apps/oedmjuk-server",
+    "oedmjuk-ui": "libs/oedmjuk-ui",
+    "oedmjuk-ui-e2e": "apps/oedmjuk-ui-e2e",
     "oedmjuk-webapp": "apps/oedmjuk-webapp",
     "oedmjuk-webapp-e2e": "apps/oedmjuk-webapp-e2e"
   }
