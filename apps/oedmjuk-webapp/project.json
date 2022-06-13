@@ -1,0 +1,83 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/oedmjuk-webapp/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/oedmjuk-webapp",
+        "index": "apps/oedmjuk-webapp/src/index.html",
+        "baseHref": "/",
+        "main": "apps/oedmjuk-webapp/src/main.tsx",
+        "polyfills": "apps/oedmjuk-webapp/src/polyfills.ts",
+        "tsConfig": "apps/oedmjuk-webapp/tsconfig.app.json",
+        "assets": [
+          "apps/oedmjuk-webapp/src/favicon.ico",
+          "apps/oedmjuk-webapp/src/assets"
+        ],
+        "styles": [],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/oedmjuk-webapp/src/environments/environment.ts",
+              "with": "apps/oedmjuk-webapp/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "oedmjuk-webapp:build",
+        "hmr": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "oedmjuk-webapp:build:development"
+        },
+        "production": {
+          "buildTarget": "oedmjuk-webapp:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/oedmjuk-webapp/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/oedmjuk-webapp"],
+      "options": {
+        "jestConfig": "apps/oedmjuk-webapp/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
