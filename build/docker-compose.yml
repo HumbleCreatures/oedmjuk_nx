@@ -1,0 +1,33 @@
+version: '2.4'
+services:
+  postgres:
+    extends:
+        file: docker-compose.common.yml
+        service: postgres
+    tmpfs: /var/lib/postgresql/data
+  minio:
+    extends:
+        file: docker-compose.common.yml
+        service: minio
+  inbucket:
+    extends:
+        file: docker-compose.common.yml
+        service: inbucket
+  keycloak:
+    extends:
+        file: docker-compose.common.yml
+        service: keycloak
+
+  start_dependencies:
+    image: dadarek/wait-for-dependencies:latest
+    networks:
+      - oed-test
+    depends_on:
+      - postgres
+      - minio
+      - inbucket
+    command: postgres:5432 minio:9000 inbucket:9001
+
+networks:
+  oed-test:
+    driver: bridge

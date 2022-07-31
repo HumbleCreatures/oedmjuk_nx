@@ -15,7 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@oedmjuk/oedmjuk-ui": ["libs/oedmjuk-ui/src/index.ts"]
+      "@oedmjuk/clients": ["libs/clients/src/index.ts"],
+      "@oedmjuk/oedmjuk-ui": ["libs/oedmjuk-ui/src/index.ts"],
+      "@oedmjuk/shared": ["libs/shared/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
